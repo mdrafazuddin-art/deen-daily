@@ -26,8 +26,38 @@
     <!-- Main Page -->
     <div id="mainPage" class="page-content">
       <header class="text-center mb-6"><h1 class="text-4xl font-bold text-green-700">দ্বীন ডেইলী</h1><p class="text-gray-500">আপনার দৈনন্দিন ইসলামিক সঙ্গী</p></header>
-      <div id="prayerCard" class="bg-white rounded-lg shadow-md p-4 mb-6"><h2 id="prayerTimesTitle" class="text-xl font-bold text-center text-gray-700 mb-1">নামাজের সময়সূচী</h2><p id="locationStatus" class="text-sm text-center text-gray-500 mb-3">অবস্থান সনাক্ত করা হচ্ছে...</p><div id="prayerTimesContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center text-sm"><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div></div></div>
-      <div class="bg-white rounded-lg shadow-md p-4 mb-6"><div class="flex justify-between items-center mb-3"><button onclick="prevMonth()" class="bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700">‹</button><div class="text-center"><h2 id="monthYear" class="text-xl font-semibold"></h2><p id="hijriDate" class="text-sm text-green-600 font-medium"></p></div><button onclick="nextMonth()" class="bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700">›</button></div><div id="calendar" class="grid grid-cols-7 gap-1 text-center"></div><div class="text-center mt-4"><button onclick="goToToday()" class="bg-yellow-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-yellow-600">আজকের তারিখ</button></div></div>
+      
+      <div id="prayerCard" class="bg-white rounded-lg shadow-md p-4 mb-6">
+        <div class="flex justify-center items-center mb-1">
+          <h2 id="prayerTimesTitle" class="text-xl font-bold text-center text-gray-700">নামাজের সময়সূচী</h2>
+          <button onclick="changeLocationManually()" class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full ml-2 hover:bg-gray-300">পরিবর্তন</button>
+        </div>
+        <p id="locationStatus" class="text-sm text-center text-gray-500 mb-3">অবস্থান সনাক্ত করা হচ্ছে...</p>
+        <div id="prayerTimesContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center text-sm"><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div><div class="p-2 bg-gray-200 rounded-md animate-pulse h-12"></div></div>
+      </div>
+
+      <div id="dailyVerseCard" class="bg-white rounded-lg shadow-md p-4 mb-6">
+        <h2 class="text-xl font-bold text-center text-gray-700 mb-2">আজকের বাণী</h2>
+        <div class="text-center">
+          <p id="dailyArabic" class="arabic-text" style="font-size: 1.4rem; line-height: 2.5rem;">লোড হচ্ছে...</p>
+          <p id="dailyTranslation" class="text-gray-600">...</p>
+          <p id="dailyVerseRef" class="text-xs text-gray-400 mt-2"></p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+          <div class="flex justify-between items-center mb-3">
+              <button onclick="prevMonth()" class="bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700">‹</button>
+              <div class="text-center">
+                  <h2 id="monthYear" class="text-xl font-semibold"></h2>
+                  <p id="hijriDate" class="text-sm text-green-600 font-medium"></p>
+              </div>
+              <button onclick="nextMonth()" class="bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700">›</button>
+          </div>
+          <div id="calendar" class="grid grid-cols-7 gap-1 text-center"></div>
+          <div class="text-center mt-4"><button onclick="goToToday()" class="bg-yellow-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-yellow-600">আজকের তারিখ</button></div>
+      </div>
+      
       <div class="grid grid-cols-2 gap-4">
         <button onclick="showPage('searchPage')" class="col-span-2 bg-green-600 text-white py-3 rounded-lg shadow-md hover:bg-green-700 text-lg font-bold">কুরআন থেকে সূরা সার্চ করুন</button>
         <button onclick="showPage('kalemaPage')" class="bg-blue-500 text-white py-3 rounded-lg shadow-md hover:bg-blue-600">কালেমা সমূহ</button>
@@ -41,33 +71,54 @@
     <!-- Content Pages -->
     <div id="searchPage" class="page-content"></div><div id="kalemaPage" class="page-content"></div><div id="duroodPage" class="page-content"></div><div id="surahPage" class="page-content"></div><div id="asmaulHusnaPage" class="page-content"></div><div id="duaPage" class="page-content"></div><div id="zikrPage" class="page-content"></div>
 
-    <!-- ============================================ -->
-    <!-- ===== Adsterra ব্যানার অ্যাডের কোড এখানে (স্থায়ী) ===== -->
     <div class="mt-8 flex justify-center">
       <script type="text/javascript">
-          atOptions = {
-              'key' : '5b1338403d4358bb7d37614dca24ecda',
-              'format' : 'iframe',
-              'height' : 50,
-              'width' : 320,
-              'params' : {}
-          };
+          atOptions = { 'key' : '5b1338403d4358bb7d37614dca24ecda', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
       </script>
       <script type="text/javascript" src="//www.highperformanceformat.com/5b1338403d4358bb7d37614dca24ecda/invoke.js"></script>
     </div>
-    <!-- ============================================ -->
   </div>
 
   <script>
-    // --- START OF DATA SECTION (All data remains the same) ---
+    // --- START OF DATA SECTION ---
     const kalemaData = [ { title: 'কালেমা তাইয়্যেবা', arabic: 'لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَسُولُ اللهِ', transliteration: 'লা ইলাহা ইল্লাল্লাহু মুহাম্মাদুর রাসুলুল্লাহ', translation: 'আল্লাহ ছাড়া কোনো উপাস্য নেই, মুহাম্মদ (ﷺ) আল্লাহর রাসূল।' }, { title: 'কালেমা শাহাদাত', arabic: 'أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ', transliteration: 'আশহাদু আল লা ইলাহা ইল্লাল্লাহু ওয়াহদাহু লা শারীকালাহু, ওয়া আশহাদু আন্না মুহাম্মাদান আবদুহু ওয়া রাসুলুহু।', translation: 'আমি সাক্ষ্য দিচ্ছি যে, আল্লাহ ছাড়া কোনো উপাস্য নেই, তিনি এক, তাঁর কোনো অংশীদার নেই। আমি আরও সাক্ষ্য দিচ্ছি যে, মুহাম্মদ (ﷺ) তাঁর বান্দা ও রাসূল।' }, { title: 'কালেমা তামজীদ', arabic: 'سُبْحَانَ اللهِ وَالْحَمْدُ لِلهِ وَلَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ الْعَلِيِّ الْعَظِيمِ', transliteration: 'সুবহানাল্লাহি ওয়াল হামদুলিল্লাহি ওয়ালা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার, ওয়ালা হাওলা ওয়ালা কুওয়্যাতা ইল্লা বিল্লাহিল আলিয়্যিল আযীম।', translation: 'আল্লাহ পবিত্র, সকল প্রশংসা আল্লাহর, আল্লাহ ছাড়া কোনো উপাস্য নেই, আল্লাহ মহান। মহান আল্লাহর সাহায্য ছাড়া পাপ থেকে বিরত থাকার ও পুণ্য করার কোনো শক্তি নেই।' }, { title: 'কালেমা তাওহীদ', arabic: 'لَا إِلٰهَ إِلَّا أَنْتَ وَاحِدًا لَا ثَانِيَ لَكَ، مُحَمَّدٌ رَسُولُ اللهِ إِمَامُ الْمُتَّقِينَ رَسُولُ رَبِّ الْعَالَمِينَ', transliteration: 'লা ইলাহা ইল্লা আনতা ওয়াহিদান লা সানিয়া লাকা, মুহাম্মাদুর রাসুলুল্লাহি ইমামুল মুত্তাক্বীনা রাসুলু রাব্বিল আলামীন।', translation: 'আপনি ব্যতীত কোন উপাস্য নেই, আপনি এক, আপনার কোন দ্বিতীয় নেই। মুহাম্মদ (ﷺ) আল্লাহ্‌র রাসুল, মুত্তাকীদের নেতা, বিশ্বজগতের প্রতিপালকের রাসুল।' }, { title: 'ঈമാনে মুজমাল', arabic: 'آمَنْتُ بِاللهِ كَمَا هُوَ بِأَسْمَائِهِ وَصِفَاتِهِ وَقَبِلْتُ جَمِيعَ أَحْكَامِهِ وَأَرْكَانِهِ', transliteration: 'আমানতু বিল্লাহি কামা হুয়া বিআসমাইহি ওয়া সিফাতিহি ওয়া ক্বাবিলতু জামিআ আহকামিহি ওয়া আরকানিহি।', translation: 'আমি আল্লাহর উপর ঈমান আনলাম, তিনি যেমন, তাঁর সকল নাম ও গুণাবলীসহ। আর আমি তাঁর সকল বিধান ও আরকান গ্রহণ করে নিলাম।' } ];
     const duroodData = { title: 'দরুদে ইবরাহীম', arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ.', transliteration: 'আল্লাহুম্মা সাল্লি ‘আলা মুহাম্মাদিউ ওয়া ‘আলা আলি মুহাম্মাদ, কামা সাল্লাইতা ‘আলা ইবরাহিমা ওয়া ‘আলা আলি ইবরাহিম, ইন্নাকা হামিদুম মাজিদ। আল্লাহুম্মা বারিক ‘আলা মুহাম্মাদিউ ওয়া ‘আলা আলি মুহাম্মাদ, কামা বারাকতা ‘আলা ইবরাহিমা ওয়া ‘আলা আলি ইবরাহিম, ইন্নাকা হামিদুম মাজিদ।', translation: 'হে আল্লাহ! মুহাম্মদ (ﷺ) এবং তাঁর বংশধরগণের উপর ঐরূপ রহমত বর্ষণ কর যেমন তুমি ইবরাহীম (আঃ) ও তাঁর বংশধরগণের উপর রহমত বর্ষণ করেছ। নিশ্চয়ই তুমি প্রশংসনীয় ও সম্মানীয়। হে আল্লাহ! মুহাম্মদ (ﷺ) এবং তাঁর বংশধরগণের উপর ঐরূপ বরকত বর্ষণ কর যেমন তুমি ইবরাহীম (আঃ) ও তাঁর বংশধরগণের উপর বরকত বর্ষণ করেছ। নিশ্চয়ই তুমি প্রশংসনীয় ও সম্মানীয়।' };
-    const surahData = [ { title: 'সূরা ফাতিহা', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ (1) الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (2) الرَّحْمَٰنِ الرَّحِيمِ (3) مَالِكِ يَوْمِ الدِّينِ (4) إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ (5) اهْدِنَا الصِّرَاطَ الْمُsسْتَقِيمَ (6) صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ (7)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। আলহামদু লিল্লা-হি রাব্বিল ‘আ-লামীন। আররাহমা-নির রাহীম। মা-লিকি ইয়াওমিদ্দীন। ইয়্যা-কা না‘বুদু ওয়া ইয়্যা-কা নাসতা‘ঈন। ইহদিনাস সিরা-তাল মুসতাকীম। সিরা-তাল্লাযীনা আন‘আমতা ‘আলাইহিম, গাইরিল মাগদূবি ‘আলাইহিম ওয়ালাদ্দাল্লীন।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে শুরু করছি। সমস্ত প্রশংসা জগৎসমূহের প্রতিপালক আল্লাহরই। যিনি পরম করুণাময়, অসীম দয়ালু। যিনি বিচার দিবসের মালিক। আমরা একমাত্র তোমারই ইবাদত করি এবং শুধুমাত্র তোমারই সাহায্য প্রার্থনা করি। আমাদেরকে সরল পথ দেখাও। সে সমস্ত লোকের পথ, যাদেরকে তুমি নেয়ামত দান করেছ। তাদের পথ নয়, যাদের প্রতি তোমার গজব নাযিল হয়েছে এবং যারা পথভ্রষ্ট হয়েছে।' }, { title: 'সূরা ইখলাস', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ (1) اللَّهُ الصَّمَدُ (2) لَمْ يَلِدْ وَلَمْ يُولَدْ (3) وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ (4)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। কুল হুওয়াল্লাহু আহাদ। আল্লাহুস সামাদ। লাম ইয়ালিদ ওয়া লাম ইউলাদ। ওয়া লাম ইয়াকুল্লাহু কুফুওয়ান আহাদ।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। বল, তিনি আল্লাহ, এক-অদ্বিতীয়। আল্লাহ অমুখাপেক্ষী। তিনি কাউকে জন্ম দেননি এবং তাঁকেও জন্ম দেয়া হয়নি। এবং তাঁর সমতুল্য কেউই নেই।' }, { title: 'সূরা ফালাক', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ (1) مِنْ شَرِّ مَا خَلَقَ (2) وَمِنْ شَرِّ غَاسِqٍ إِذَا وَقَبَ (3) وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ (4) وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ (5)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। কুল আ‘উযু বিরাব্বিল ফালাক। মিন শাররি মা খালাক। ওয়া মিন শাররি গাসিকিন ইযা ওয়াকাব। ওয়া মিন শাররิน নাফফাসা-তি ফিল ‘উকাদ। ওয়া মিন শাররি হাসিদিন ইযা হাসাদ।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। বল, আমি আশ্রয় গ্রহণ করছি প্রভাতের পালনকর্তার, তিনি যা সৃষ্টি করেছেন, তার অনিষ্ট থেকে। এবং অন্ধকার রাত্রির অনিষ্ট থেকে, যখন তা সমাগত হয়। এবং গ্রন্থিতে ফুঁৎকার দিয়ে জাদুকারিনীদের অনিষ্ট থেকে। এবং হিংসুকের অনিষ্ট থেকে যখন সে হিংসা করে।' }, { title: 'সূরা নাস', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ (1) مَلِكِ النَّاسِ (2) إِلَٰهِ النَّاسِ (3) مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ (4) الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ (5) مِنَ الْجِنَّةِ وَالنَّاسِ (6)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। কুল আ‘উযু বিরাব্বิน্না-স। মালিকิน্না-স। ইলা-হิน্না-স। মিন শাররিল ওয়াসওয়া-সিল খান্না-স। আল্লাযী ইউওয়াসউইসু ফী সুদূরิน্না-স। মিনাল জিন্নাতি ওয়ান্না-স।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। বল, আমি আশ্রয় প্রার্থনা করছি মানুষের প্রতিপালকের, মানুষের অধিপতির, মানুষের উপাস্যের। কুমন্ত্রণাদাতার অনিষ্ট থেকে, যে সুযোগ মত আত্মগোপন করে। যে কুমন্ত্রণা দেয় মানুষের অন্তরে। জ্বিনদের মধ্য থেকে এবং মানুষদের মধ্য থেকে।' }, { title: 'সূরা কাওসার', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ (1) فَصَلِّ لِرَبِّكَ وَانْحَرْ (2) إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ (3)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। ইন্নাআ‘তাইনা-কাল কাওসার। ফাসাল্লি লিরাব্বিকা ওয়ানহার। ইন্না শা-নিআকা হুওয়াল আবতার।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। নিশ্চয় আমি আপনাকে কাওসার দান করেছি। অতএব আপনার পালনকর্তার উদ্দেশ্যে নামায পড়ুন এবং কোরবানী করুন। যে আপনার শত্রু, সেই তো লেজকাটা, নির্বংশ।' }, { title: 'সূরা কাফিরুন', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰnِ الرَّحِيمِ. قُلْ يَا أَيُّهَا الْكَافِرُونَ (1) لَا أَعْبُدُ مَا تَعْبُدُونَ (2) وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ (3) وَلَا أَنَا عَابِدٌ مَا عَبَدْتُمْ (4) وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ (5) لَكُمْ دِينُكُمْ وَلِيَ دِينِ (6)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। কুল ইয়া আইয়্যুহাল কা-ফিরূন। লা আ‘বুদু মা তা‘বুদূন। ওয়ালা আনতুম ‘আ-বিদূনা মা আ‘বুদ। ওয়ালা আনা ‘আ-বিদুম মা ‘আবাত্তুম। ওয়ালা আনতুম ‘আ-বিদূনা মা আ‘বুদ। লাকুম দীনুকুম ওয়া লিয়া দীন।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। বলুন, হে কাফিরগণ! আমি এবাদত করিনা, তোমরা যার এবাদত কর। এবং তোমরাও এবাদতকারী নও, যার এবাদত আমি করি। এবং আমি এবাদতকারী নই, যার এবাদত তোমরা কর। তোমরা এবাদতকারী নও, যার এবাদত আমি করি। তোমাদের কর্ম ও কর্মফল তোমাদের জন্যে এবং আমার কর্ম ও কর্মফল আমার জন্যে।' }, { title: 'সূরা আসর', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. وَالْعَصْرِ (1) إِنَّ الْإِنْسَانَ لَفِي خُsسْرٍ (2) إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ (3)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। ওয়াল ‘আসর। ইন্নাল ইনসা-না লাফী খুসর। ইল্লাল্লাযীনা আ-মানূ ওয়া ‘আমিলুস সা-লিহা-তি ওয়া তাওয়া- সাওবিল হাক্কি ওয়া তাওয়া-সাও বিস সাবর।', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে। সময়ের কসম, নিশ্চয় মানুষ ক্ষতির মধ্যে নিমজ্জিত। কিন্তু তারা নয়, যারা বিশ্বাস স্থাপন করে ও সৎকর্ম করে এবং পরস্পরকে সত্যের উপদেশ দেয় ও ধৈর্য্যের উপদেশ দেয়।' } ];
-    const asmaulHusnaData = [ { id: 1, name: "ٱلْرَّحْمَـٰنُ", transliteration: "আর-রহমান", meaning: "পরম দয়ালু" }, { id: 2, name: "ٱلْرَّحِيْمُ", transliteration: "আর-রহীম", meaning: "অতিশয় মেহেরবান" }, { id: 3, name: "ٱلْمَلِكُ", transliteration: "আল-মালিক", meaning: "সর্বকর্তৃত্বময়" }, { id: 4, name: "ٱلْقُدُّوسُ", transliteration: "আল-কুদ্দুস", meaning: "নিষ্কলুষ, অতি পবিত্র" }, { id: 5, name: "ٱلْسَّلَامُ", transliteration: "আস-সালাম", meaning: "শান্তি ও নিরাপত্তার উৎস" }, { id: 6, name: "ٱلْمُؤْمِنُ", transliteration: "আল-মু’মিন", meaning: "নিরাপত্তাদাতা" }, { id: 7, name: "ٱلْمُهَيْمِنُ", transliteration: "আল-মুহাইমিন", meaning: "পরিপূর্ণ রক্ষণাবেক্ষণকারী" }, { id: 8, name: "ٱلْعَزِيزُ", transliteration: "আল-আযীয", meaning: "সর্বশক্তিমান" }, { id: 9, name: "ٱلْجَبَّارُ", transliteration: "আল-জাব্বার", meaning: "দুর্নিবার" }, { id: 10, name: "ٱلْمُتَكَبِّرُ", transliteration: "আল-মুতাকাব্বির", meaning: "সর্বশ্রেষ্ঠ" }, { id: 11, name: "ٱلْخَالِقُ", transliteration: "আল-খালিক", meaning: "সৃষ্টিকর্তা" }, { id: 12, name: "ٱلْبَارِئُ", transliteration: "আল-বারী", meaning: "সঠিকভাবে সৃষ্টিকারী" }, { id: 13, name: "ٱلْمُصَوِّرُ", transliteration: "আল-মুসাওয়ির", meaning: "আকৃতিদানকারী" }, { id: 14, name: "ٱلْغَفَّارُ", transliteration: "আল-গাফফার", meaning: "পরম ক্ষমাশীল" }, { id: 15, name: "ٱلْقَهَّارُ", transliteration: "আল-কাহ্হার", meaning: "কঠোর" }, { id: 16, name: "ٱلْوَهَّابُ", transliteration: "আল-ওয়াহ্হাব", meaning: "সবকিছু দানকারী" }, { id: 17, name: "ٱلْرَّزَّاقُ", transliteration: "আর-রাজ্জাক", meaning: "রিযিকদাতা" }, { id: 18, name: "ٱلْفَتَّاحُ", transliteration: "আল-ফাত্তাহ", meaning: "বিজয়দানকারী" }, { id: 19, name: "ٱلْعَلِيمُ", transliteration: "আল-আলীম", meaning: "সর্বজ্ঞ" }, { id: 20, name: "ٱلْقَابِضُ", transliteration: "আল-কাবিদ", meaning: "সংকোচনকারী" }, { id: 21, name: "ٱلْبَاسِطُ", transliteration: "আল-বাসিত", meaning: "সম্প্রসারণকারী" }, { id: 22, name: "ٱلْخَافِضُ", transliteration: "আল-খাফিদ", meaning: "অবিশ্বাসীদের অপমানকারী" }, { id: 23, name: "ٱلْرَّافِعُ", transliteration: "আর-রাফি", meaning: "উন্নীতকারী" }, { id: 24, name: "ٱلْمُعِزُّ", transliteration: "আল-মুইয", meaning: "সম্মানদানকারী" }, { id: 25, name: "ٱلْمُذِلُّ", transliteration: "আল-মুযিল", meaning: "অপমানকারী" }, { id: 26, name: "ٱلْسَّمِيعُ", transliteration: "আস-গামী", meaning: "সর্বশ্রোতা" }, { id: 27, name: "ٱلْبَصِيرُ", transliteration: "আল-বাসীর", meaning: "সর্বদ্রষ্টা" }, { id: 28, name: "ٱلْحَكَمُ", transliteration: "আল-হাকাম", meaning: "বিচারক" }, { id: 29, name: "ٱلْعَدْلُ", transliteration: "আল-আদল", meaning: "ন্যায়পরায়ণ" }, { id: 30, name: "ٱلْلَّطِيفُ", transliteration: "আল-লাতীফ", meaning: "সূক্ষ্মদর্শী" }, { id: 31, name: "ٱلْخَبِيرُ", transliteration: "আল-খবীর", meaning: "সর্বজ্ঞ" }, { id: 32, name: "ٱلْحَلِيمُ", transliteration: "আল-হালীম", meaning: "অত্যন্ত ধৈর্যশীল" }, { id: 33, name: "ٱلْعَظِيمُ", transliteration: "আল-আযীম", meaning: "সর্বাধিক মহান" }, { id: 34, name: "ٱلْغَفُورُ", transliteration: "আল-গফুর", meaning: "পরম ক্ষমাশীল" }, { id: 35, name: "ٱلْشَّكُورُ", transliteration: "আশ-شکুর", meaning: "গুণগ্রাহী" }, { id: 36, name: "ٱلْعَلِيُّ", transliteration: "আল-আলী", meaning: "সর্বোচ্চ" }, { id: 37, name: "ٱلْكَبِيرُ", transliteration: "আল-কাবীর", meaning: "সুমহান" }, { id: 38, name: "ٱلْحَفِيظُ", transliteration: "আল-হাফীজ", meaning: "সংরক্ষণকারী" }, { id: 39, name: "ٱلْمُقِيتُ", transliteration: "আল-মুকীত", meaning: "আহার্যদাতা" }, { id: 40, name: "ٱlْحَسِيبُ", transliteration: "আল-হাসীব", meaning: "হিসাব গ্রহণকারী" }, { id: 41, name: "ٱlْجَلِيلُ", transliteration: "আল-জালীল", meaning: "গৌরবময়" }, { id: 42, name: "ٱlْكَرِيمُ", transliteration: "আল-কারীম", meaning: "সুমহান দাতা" }, { id: 43, name: "ٱlْرَّقِيبُ", transliteration: "আর-রকীব", meaning: "তত্ত্বাবধায়ক" }, { id: 44, name: "ٱlْمُجِيبُ", transliteration: "আল-মুজীব", meaning: "সাড়া দানকারী" }, { id: 45, name: "ٱlْوَاسِعُ", transliteration: "আল-ওয়াসি", meaning: "সর্বব্যাপী" }, { id: 46, name: "ٱlْحَكِيمُ", transliteration: "আল-হাকীম", meaning: "পরম প্রজ্ঞাময়" }, { id: 47, name: "ٱlْوَدُودُ", transliteration: "আল-ওয়াদুদ", meaning: "প্রেমময়" }, { id: 48, name: "ٱlْمَجِيدُ", transliteration: "আল-মাজীদ", meaning: "মহিমান্বিত" }, { id: 49, name: "ٱlْبَاعِثُ", transliteration: "আল-বাইস", meaning: "পুনরুত্থানকারী" }, { id: 50, name: "ٱlْشَّهِيدُ", transliteration: "আশ-শাহীদ", meaning: "সর্বদর্শী" }, { id: 51, name: "ٱlْحَقُّ", transliteration: "আল-হক", meaning: "সত্য" }, { id: 52, name: "ٱlْوَكِيلُ", transliteration: "আল-ওয়াকীল", meaning: "কর্ম সম্পাদনকারী" }, { id: 53, name: "ٱlْقَوِيُّ", transliteration: "আল-কাউয়ী", meaning: "পরম শক্তিশালী" }, { id: 54, name: "ٱlْمَتِينُ", transliteration: "আল-মাতীন", meaning: "সুদৃঢ়" }, { id: 55, name: "ٱlْوَلِيُّ", transliteration: "আল-ওয়ালী", meaning: "অভিভাবক" }, { id: 56, name: "ٱlْحَمِيدُ", transliteration: "আল-হামীদ", meaning: "প্রশংসিত" }, { id: 57, name: "ٱlْمُحْصِيُ", transliteration: "আল-মুহসী", meaning: "হিসাবকারী" }, { id: 58, name: "ٱlْمُبْدِئُ", transliteration: "আল-মুবদী", meaning: "অস্তিত্বদানকারী" }, { id: 59, name: "ٱlْمُعِيدُ", transliteration: "আল-মুঈদ", meaning: "পুনরায় সৃষ্টিকারী" }, { id: 60, name: "ٱlْمُحْيِيُ", transliteration: "আল-মুহয়ী", meaning: "জীবনদানকারী" }, { id: 61, name: "ٱlْمُمِيتُ", transliteration: "আল-মুমীত", meaning: "মৃত্যুদানকারী" }, { id: 62, name: "ٱlْحَيُّ", transliteration: "আল-হাইয়্যু", meaning: "চিরঞ্জীব" }, { id: 63, name: "ٱlْقَيُّومُ", transliteration: "আল-কাইয়্যুম", meaning: "চিরস্থায়ী" }, { id: 64, name: "ٱlْوَاجِدُ", transliteration: "আল-ওয়াজিদ", meaning: "অসীম সম্পদশালী" }, { id: 65, name: "ٱlْمَاجِدُ", transliteration: "আল-মাজিদ", meaning: "মহিমান্বিত" }, { id: 66, name: "ٱlْوَاحِدُ", transliteration: "আল-ওয়াহিদ", meaning: "এক" }, { id: 67, name: "ٱlْأَحَدُ", transliteration: "আল-আহাদ", meaning: "এক ও অদ্বিতীয়" }, { id: 68, name: "ٱlْصَّمَدُ", transliteration: "আস-সামাদ", meaning: "অমুখাপেক্ষী" }, { id: 69, name: "ٱlْقَادِرُ", transliteration: "আল-কাদির", meaning: "সর্বশক্তিমান" }, { id: 70, name: "ٱlْمُقْتَدِرُ", transliteration: "আল-মুকতাদির", meaning: "সর্বাধিক প্রভাবশালী" }, { id: 71, name: "ٱlْمُقَدِّمُ", transliteration: "আল-মুকাদ্দিম", meaning: "অগ্রসরকারী" }, { id: 72, name: "ٱlْمُؤَخِّرُ", transliteration: "আল-মুআক্ষির", meaning: "অবকাশদানকারী" }, { id: 73, name: "ٱlْأَوَّلُ", transliteration: "আল-আউয়াল", meaning: "অনাদি" }, { id: 74, name: "ٱlْآخِرُ", transliteration: "আল-आखির", meaning: "অনন্ত" }, { id: 75, name: "ٱlْظَّاهِرُ", transliteration: "আয-যahir", meaning: "প্রকাশ্য" }, { id: 76, name: "ٱlْْبَاطِنُ", transliteration: "আল-বাতিন", meaning: "গুপ্ত" }, { id: 77, name: "ٱlْوَالِي", transliteration: "আল-ওয়ালী", meaning: "সর্বময় কর্তা" }, { id: 78, name: "ٱlْمُتَعَالِي", transliteration: "আল-মুতাআলী", meaning: "সৃষ্টির ঊর্ধ্বে" }, { id: 79, name: "ٱlْبَرُّ", transliteration: "আল-বার্", meaning: "কল্যাণময়" }, { id: 80, name: "ٱlْتَّوَّابُ", transliteration: "আত-তাওয়াব", meaning: "তওবা কবুলকারী" }, { id: 81, name: "ٱlْمُنْتَقِمُ", transliteration: "আল-মুনতাকিম", meaning: "প্রতিশোধ গ্রহণকারী" }, { id: 82, name: "ٱlْعَفُوُّ", transliteration: "আল-আফু", meaning: "ক্ষমাকারী" }, { id: 83, name: "ٱlْرَّؤُوفُ", transliteration: "আর-রউফ", meaning: "পরম স্নেহশীল" }, { id: 84, name: "مَالِكُ ٱlْمُلْكِ", transliteration: "মালিকুল মুলক", meaning: "সমগ্র রাজ্যের মালিক" }, { id: 85, name: "ذُو ٱlْجَلَالِ وَٱlْإِكْرَامِ", transliteration: "যুল-জালালি ওয়াল-ইকরাম", meaning: "মহিমান্বিত ও মহানুভব" }, { id: 86, name: "ٱlْمُقْسِطُ", transliteration: "আল-মুকসিত", meaning: "ন্যায়পরায়ণ" }, { id: 87, name: "ٱlْجَامِعُ", transliteration: "আল-জামি", meaning: "একত্রকারী" }, { id: 88, name: "ٱlْغَنِيُّ", transliteration: "আল-গনী", meaning: "ঐশ্বর্যশালী" }, { id: 89, name: "ٱlْمُغْنِيُّ", transliteration: "আল-মুগনী", meaning: "ঐশ্বর্যদানকারী" }, { id: 90, name: "ٱlْمَانِعُ", transliteration: "আল-মানি", meaning: "প্রতিরোধকারী" }, { id: 91, name: "ٱlْضَّارُّ", transliteration: "আদ-দার", meaning: "ক্ষতিসাধনকারী" }, { id: 92, name: "ٱlْنَّافِعُ", transliteration: "আন-নাফি", meaning: "কল্যাণকারী" }, { id: 93, name: "ٱlْنُّورُ", transliteration: "আন-নূর", meaning: "জ্যোতি" }, { id: 94, name: "ٱlْهَادِي", transliteration: "আল-হাদী", meaning: "পথপ্রদর্শক" }, { id: 95, name: "ٱlْبَدِيعُ", transliteration: "আল-বাদী", meaning: "অভিনব সৃষ্টিকারী" }, { id: 96, name: "ٱlْبَاقِي", transliteration: "আল-বাকী", meaning: "চিরস্থায়ী" }, { id: 97, name: "ٱlْوَارِثُ", transliteration: "আল-ওয়ারিস", meaning: "উত্তরাধিকারী" }, { id: 98, name: "ٱlْرَّشِيدُ", transliteration: "আর-রশীদ", meaning: "সঠিক পথপ্রদর্শক" }, { id: 99, name: "ٱlْصَّبُورُ", transliteration: "আস-সবুর", meaning: "অসীম ধৈর্যশীল" } ];
-    const duaData = [ { title: 'খাবার শুরুর দোয়া', arabic: 'بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ', transliteration: 'বিসমিল্লাহি ওয়া ‘আলা বারাকাতিল্লাহ', translation: 'আল্লাহর নামে এবং আল্লাহর বরকতের উপর (আমি খাওয়া শুরু করছি)।' }, { title: 'খাবার শেষের দোয়া', arabic: 'اَلْحَمْدُ لِلهِ الَّذِىْ اَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِيْنَ', transliteration: 'আলহামদুলিল্লাহিল্লাযী আত্ব‘আমানা ওয়া সাক্বানা ওয়া জা‘আলানা মিনাল মুসলিমীন', translation: 'সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমাদের আহার করিয়েছেন, পান করিয়েছেন এবং মুসলিমদের অন্তর্ভুক্ত করেছেন।' }, { title: 'ঘুমানোর দোয়া', arabic: 'اَللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا', transliteration: 'আল্লাহুম্মা বিসমিকা আমুতু ওয়া আহ্ইয়া', translation: 'হে আল্লাহ! আপনারই নামে আমি মৃত্যুবরণ করি এবং জীবিত হই।' } ];
-    const zikrOptions = [ { text: 'সুবহানাল্লাহ' }, { text: 'আলহামদুলিল্লাহ' }, { text: 'আল্লাহু আকবার' }, { text: 'লা ইলাহা ইল্লাল্লাহ' }, { text: 'আস্তাগফিরুল্লাহ' } ];
-    // --- END OF DATA SECTION ---
+    
+    // ===== সূরা ডেটা আপডেট করা হয়েছে (১০-১২ টি গুরুত্বপূর্ণ সূরা) =====
+    const surahData = [
+      { title: 'সূরা ফাতিহা', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ (1) الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (2) الرَّحْمَٰنِ الرَّحِيمِ (3) مَالِكِ يَوْمِ الدِّينِ (4) إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ (5) اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (6) صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ (7)', transliteration: 'বিসমিল্লাহির রাহমানির রাহীম। আলহামদু লিল্লা-হি রাব্বিল ‘আ-লামীন... (সম্পূর্ণ)', translation: 'পরম করুণাময় অসীম দয়ালু আল্লাহর নামে শুরু করছি। সমস্ত প্রশংসা জগৎসমূহের প্রতিপালক আল্লাহরই... (সম্পূর্ণ)' },
+      { title: 'আয়াতুল কুরসি', arabic: 'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', transliteration: 'আল্লাহু লা ইলাহা ইল্লা হুয়াল হাইয়্যুল কাইয়্যুম...', translation: 'আল্লাহ, তিনি ছাড়া কোনো ইলাহ নেই। তিনি চিরঞ্জীব, চিরস্থায়ী... (সম্পূর্ণ)' },
+      { title: 'সূরা কদর', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ...', transliteration: 'ইন্না আনযালনাহু ফী লাইলাতিল কদর...', translation: 'আমি একে নাযিল করেছি কদরের রাতে...' },
+      { title: 'সূরা আসর', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. وَالْعَصْرِ (1) إِنَّ الْإِنسَانَ لَفِي خُسْرٍ (2) إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ (3)', transliteration: 'ওয়াল ‘আসর। ইন্নাল ইনসা-না লাফী খুসর...', translation: 'সময়ের কসম, নিশ্চয় মানুষ ক্ষতির মধ্যে নিমজ্জিত...' },
+      { title: 'সূরা ফীল', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ...', transliteration: 'আলাম তারা কাইফা ফা‘আলা রাব্বুকা বিআসহা-বিল ফীল...', translation: 'আপনি কি দেখেননি আপনার পালনকর্তা হস্তীবাহিনীর সাথে কিরূপ ব্যবহার করেছেন?...' },
+      { title: 'সূরা কুরাইশ', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. لِإِيلَافِ قُرَيْشٍ...', transliteration: 'লিঈলা-ফি কুরাইশ...', translation: 'যেহেতু কুরাইশদের আসক্তি আছে...' },
+      { title: 'সূরা মাউন', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ...', transliteration: 'আরাআইতাল্লাযী ইউকাযযিবু বিদ্দীন...', translation: 'আপনি কি দেখেছেন তাকে, যে বিচারদিবসকে মিথ্যা বলে?...' },
+      { title: 'সূরা কাওসার', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ...', transliteration: 'ইন্নাআ‘তাইনা-কাল কাওসার...', translation: 'নিশ্চয় আমি আপনাকে কাওসার দান করেছি...' },
+      { title: 'সূরা কাফিরুন', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰnِ الرَّحِيمِ. قُلْ يَا أَيُّهَا الْكَافِرُونَ...', transliteration: 'কুল ইয়া আইয়্যুহাল কা-ফিরূন...', translation: 'বলুন, হে কাফিরগণ! আমি এবাদত করিনা, তোমরা যার এবাদত কর...' },
+      { title: 'সূরা ইখলাস', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ...', transliteration: 'কুল হুওয়াল্লাহু আহাদ...', translation: 'বল, তিনি আল্লাহ, এক-অদ্বিতীয়...' },
+      { title: 'সূরা ফালাক', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...', transliteration: 'কুল আ‘উযু বিরাব্বিল ফালাক...', translation: 'বল, আমি আশ্রয় গ্রহণ করছি প্রভাতের পালনকর্তার...' },
+      { title: 'সূরা নাস', arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ...', transliteration: 'কুল আ‘উযু বিরাব্বิน্না-স...', translation: 'বল, আমি আশ্রয় প্রার্থনা করছি মানুষের প্রতিপালকের...' }
+    ];
 
+    // ===== দোয়া ডেটা আপডেট করা হয়েছে (অনেক নতুন দোয়া যোগ করা হয়েছে) =====
+    const duaData = [
+      { title: 'জ্ঞান বৃদ্ধির দোয়া', arabic: 'رَّبِّ زِدْنِي عِلْمًا', transliteration: 'রব্বি যিদনী ‘ইলমা', translation: 'হে আমার প্রতিপালক! আমার জ্ঞান বৃদ্ধি করে দিন।' },
+      { title: 'পিতা-মাতার জন্য দোয়া', arabic: 'رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا', transliteration: 'রব্বির হামহুমা কামা রব্বাইয়ানী সগীরা', translation: 'হে আমার প্রতিপালক! তাদের উভয়ের প্রতি রহম করুন, যেমন তারা আমাকে শৈশবে দয়ার সাথে লালন-পালন করেছেন।' },
+      { title: 'খাবার শুরুর দোয়া', arabic: 'بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ', transliteration: 'বিসমিল্লাহি ওয়া ‘আলা বারাকাতিল্লাহ', translation: 'আল্লাহর নামে এবং আল্লাহর বরকতের উপর (আমি খাওয়া শুরু করছি)।' },
+      { title: 'খাবার শেষের দোয়া', arabic: 'اَلْحَمْدُ لِلهِ الَّذِىْ اَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِيْنَ', transliteration: 'আলহামদুলিল্লাহিল্লাযী আত্ব‘আমানা ওয়া সাক্বানা ওয়া জা‘আলানা মিনাল মুসলিমীন', translation: 'সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমাদের আহার করিয়েছেন, পান করিয়েছেন এবং মুসলিমদের অন্তর্ভুক্ত করেছেন।' },
+      { title: 'ঘুমানোর দোয়া', arabic: 'اَللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا', transliteration: 'আল্লাহুম্মা বিসমিকা আমুতু ওয়া আহ্ইয়া', translation: 'হে আল্লাহ! আপনারই নামে আমি মৃত্যুবরণ করি এবং জীবিত হই।' },
+      { title: 'ঘুম থেকে ওঠার দোয়া', arabic: 'اَلْحَمْدُ لِلهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ', transliteration: 'আলহামদু লিল্লা-হিল্লাযী আহ্ইয়া-না বা‘দা মা আমা-তানা ওয়া ইলাইহিন নুশূর', translation: 'সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমাদেরকে মৃত্যুর পর জীবন দান করেছেন এবং তাঁরই দিকে আমাদের পুনরুত্থান।' },
+      { title: 'ঘরে প্রবেশের দোয়া', arabic: 'بِسْمِ اللهِ وَلَجْنَا وَبِسْمِ اللهِ خَرَجْنَا وَعَلَى اللهِ رَبِّنَا تَوَكَّلْنَا', transliteration: 'বিসমিল্লাহি ওয়ালাজনা ওয়া বিসমিল্লাহি খারাজনা ওয়া ‘আলাল্ল-হি রব্বিনা তাওয়াক্কালনা', translation: 'আল্লাহর নামে আমরা প্রবেশ করলাম এবং আল্লাহর নামেই বের হলাম এবং আমাদের রব আল্লাহর উপরই আমরা ভরসা করলাম।' },
+      { title: 'ঘর থেকে বের হওয়ার দোয়া', arabic: 'بِسْمِ اللهِ تَوَكَّلْتُ عَلَى اللهِ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ', transliteration: 'বিসমিল্লাহি তাওয়াক্কালতু ‘আলাল্লাহ, লা হাওলা ওয়ালা ক্বুওয়াতা ইল্লা বিল্লাহ', translation: 'আল্লাহর নামে (বের হচ্ছি), আমি আল্লাহর উপর ভরসা করলাম। আল্লাহর সাহায্য ছাড়া কোনো শক্তি বা সামর্থ্য নেই।' },
+      { title: 'বাথরুমে প্রবেশের দোয়া', arabic: 'اَللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ', transliteration: 'আল্লাহুম্মা ইন্নী আ‘উযু বিকা মিনাল খুবুছি ওয়াল খবা-อิছ', translation: 'হে আল্লাহ! আমি আপনার নিকট পুরুষ ও নারী শয়তানের অনিষ্ট থেকে আশ্রয় প্রার্থনা করছি।' },
+      { title: 'বাথরুম থেকে বের হওয়ার দোয়া', arabic: 'غُفْرَانَكَ، اَلْحَمْدُ لِلهِ الَّذِي أَذْهَبَ عَنِّي الْأَذَى وَعَافَانِي', transliteration: 'গুফরানাকা, আলহামদু লিল্লা-হিল্লাযী আযহাব ‘আন্নিল আযা ওয়া ‘আ-ফানী', translation: '(হে আল্লাহ) আপনার ক্ষমা চাই। সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমার থেকে কষ্টদায়ক বস্তু দূর করেছেন এবং আমাকে সুস্থতা দান করেছেন।' },
+      { title: 'কাপড় পরিধানের দোয়া', arabic: 'اَلْحَمْدُ لِلهِ الَّذِي كَسَانِي هَذَا (الثَّوْبَ) وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ', transliteration: 'আলহামদু লিল্লা-হিল্লাযী কাসানী হা-যা (আছ-ছাওবা) ওয়া রযাক্বানীহি মিন গাইরি হাওলিম মিন্নী ওয়ালা ক্বুওয়্যাহ', translation: 'সমস্ত প্রশংসা সেই আল্লাহর জন্য যিনি আমাকে এই (পোশাক) পরিধান করিয়েছেন এবং আমার কোনো শক্তি বা সামর্থ্য ছাড়াই তিনি আমাকে এর রিযিক দিয়েছেন।' },
+      { title: 'আয়না দেখার দোয়া', arabic: 'اَللَّهُمَّ كَمَا حَسَّنْتَ خَلْقِي فَحَسِّنْ خُلُقِي', transliteration: 'আল্লাহুম্মা কামা হাস্সানতা খলকী ফাহাস্সিন খুলুকী', translation: 'হে আল্লাহ! আপনি যেমন আমার দৈহিক আকৃতিকে সুন্দর করেছেন, তেমনি আমার চরিত্রকেও সুন্দর করে দিন।' }
+    ];
+    
+    const asmaulHusnaData = [ { id: 1, name: "ٱلْرَّحْمَـٰنُ", transliteration: "আর-রহমান", meaning: "পরম দয়ালু" }, { id: 2, name: "ٱلْرَّحِيْمُ", transliteration: "আর-রহীম", meaning: "অতিশয় মেহেরবান" }, { id: 3, name: "ٱلْمَلِكُ", transliteration: "আল-মালিক", meaning: "সর্বকর্তৃত্বময়" }, { id: 4, name: "ٱلْقُدُّوسُ", transliteration: "আল-কুদ্দুস", meaning: "নিষ্কলুষ, অতি পবিত্র" }, { id: 5, name: "ٱلْسَّلَامُ", transliteration: "আস-সালাম", meaning: "শান্তি ও নিরাপত্তার উৎস" }, { id: 6, name: "ٱلْمُؤْمِنُ", transliteration: "আল-মু’মিন", meaning: "নিরাপত্তাদাতা" }, { id: 7, name: "ٱلْمُهَيْمِنُ", transliteration: "আল-মুহাইমিন", meaning: "পরিপূর্ণ রক্ষণাবেক্ষণকারী" }, { id: 8, name: "ٱلْعَزِيزُ", transliteration: "আল-আযীয", meaning: "সর্বশক্তিমান" }, { id: 9, name: "ٱلْجَبَّارُ", transliteration: "আল-জাব্বার", meaning: "দুর্নিবার" }, { id: 10, name: "ٱلْمُتَكَبِّرُ", transliteration: "আল-মুতাকাব্বির", meaning: "সর্বশ্রেষ্ঠ" }, { id: 11, name: "ٱلْخَالِقُ", transliteration: "আল-খালিক", meaning: "সৃষ্টিকর্তা" }, { id: 12, name: "ٱلْبَارِئُ", transliteration: "আল-বারী", meaning: "সঠিকভাবে সৃষ্টিকারী" }, { id: 13, name: "ٱلْمُصَوِّرُ", transliteration: "আল-মুসাওয়ির", meaning: "আকৃতিদানকারী" }, { id: 14, name: "ٱلْغَفَّارُ", transliteration: "আল-গাফফার", meaning: "পরম ক্ষমাশীল" }, { id: 15, name: "ٱلْقَهَّارُ", transliteration: "আল-কাহ্হার", meaning: "কঠোর" }, { id: 16, name: "ٱلْوَهَّابُ", transliteration: "আল-ওয়াহ্হাব", meaning: "সবকিছু দানকারী" }, { id: 17, name: "ٱلْرَّزَّاقُ", transliteration: "আর-রাজ্জাক", meaning: "রিযিকদাতা" }, { id: 18, name: "ٱلْفَتَّاحُ", transliteration: "আল-ফাত্তাহ", meaning: "বিজয়দানকারী" }, { id: 19, name: "ٱلْعَلِيمُ", transliteration: "আল-আলীম", meaning: "সর্বজ্ঞ" }, { id: 20, name: "ٱلْقَابِضُ", transliteration: "আল-কাবিদ", meaning: "সংকোচনকারী" }, { id: 21, name: "ٱلْبَاسِطُ", transliteration: "আল-বাসিত", meaning: "সম্প্রসারণকারী" }, { id: 22, name: "ٱلْخَافِضُ", transliteration: "আল-খাফিদ", meaning: "অবিশ্বাসীদের অপমানকারী" }, { id: 23, name: "ٱلْرَّافِعُ", transliteration: "আর-রাফি", meaning: "উন্নীতকারী" }, { id: 24, name: "ٱلْمُعِزُّ", transliteration: "আল-মুইয", meaning: "সম্মানদানকারী" }, { id: 25, name: "ٱلْمُذِلُّ", transliteration: "আল-মুযিল", meaning: "অপমানকারী" }, { id: 26, name: "ٱلْسَّمِيعُ", transliteration: "আস-গামী", meaning: "সর্বশ্রোতা" }, { id: 27, name: "ٱلْبَصِيرُ", transliteration: "আল-বাসীর", meaning: "সর্বদ্রষ্টা" }, { id: 28, name: "ٱlْحَكَمُ", transliteration: "আল-হাকাম", meaning: "বিচারক" }, { id: 29, name: "ٱlْعَدْلُ", transliteration: "আল-আদল", meaning: "ন্যায়পরায়ণ" }, { id: 30, name: "ٱlْلَّطِيفُ", transliteration: "আল-লাতীফ", meaning: "সূক্ষ্মদর্শী" }, { id: 31, name: "ٱlْخَبِيرُ", transliteration: "আল-খবীর", meaning: "সর্বজ্ঞ" }, { id: 32, name: "ٱlْحَلِيمُ", transliteration: "আল-হালীম", meaning: "অত্যন্ত ধৈর্যশীল" }, { id: 33, name: "ٱlْعَظِيمُ", transliteration: "আল-আযীম", meaning: "সর্বাধিক মহান" }, { id: 34, name: "ٱlْغَفُورُ", transliteration: "আল-গফুর", meaning: "পরম ক্ষমাশীল" }, { id: 35, name: "ٱlْشَّكُورُ", transliteration: "আশ-شکুর", meaning: "গুণগ্রাহী" }, { id: 36, name: "ٱlْعَلِيُّ", transliteration: "আল-আলী", meaning: "সর্বোচ্চ" }, { id: 37, name: "ٱlْكَبِيرُ", transliteration: "আল-কাবীর", meaning: "সুমহান" }, { id: 38, name: "ٱlْحَفِيظُ", transliteration: "আল-হাফীজ", meaning: "সংরক্ষণকারী" }, { id: 39, name: "ٱlْمُقِيتُ", transliteration: "আল-মুকীত", meaning: "আহার্যদাতা" }, { id: 40, name: "ٱlْحَسِيبُ", transliteration: "আল-হাসীব", meaning: "হিসাব গ্রহণকারী" }, { id: 41, name: "ٱlْجَلِيلُ", transliteration: "আল-জালীল", meaning: "গৌরবময়" }, { id: 42, name: "ٱlْكَرِيمُ", transliteration: "আল-কারীম", meaning: "সুমহান দাতা" }, { id: 43, name: "ٱlْرَّقِيبُ", transliteration: "আর-রকীব", meaning: "তত্ত্বাবধায়ক" }, { id: 44, name: "ٱlْمُجِيبُ", transliteration: "আল-মুজীব", meaning: "সাড়া দানকারী" }, { id: 45, name: "ٱlْوَاسِعُ", transliteration: "আল-ওয়াসি", meaning: "সর্বব্যাপী" }, { id: 46, name: "ٱlْحَكِيمُ", transliteration: "আল-হাকীম", meaning: "পরম প্রজ্ঞাময়" }, { id: 47, name: "ٱlْوَدُودُ", transliteration: "আল-ওয়াদুদ", meaning: "প্রেমময়" }, { id: 48, name: "ٱlْمَجِيدُ", transliteration: "আল-মাজীদ", meaning: "মহিমান্বিত" }, { id: 49, name: "ٱlْبَاعِثُ", transliteration: "আল-বাইস", meaning: "পুনরুত্থানকারী" }, { id: 50, name: "ٱlْشَّهِيدُ", transliteration: "আশ-শাহীদ", meaning: "সর্বদর্শী" }, { id: 51, name: "ٱlْحَقُّ", transliteration: "আল-হক", meaning: "সত্য" }, { id: 52, name: "ٱlْوَكِيلُ", transliteration: "আল-ওয়াকীল", meaning: "কর্ম সম্পাদনকারী" }, { id: 53, name: "ٱlْقَوِيُّ", transliteration: "আল-কাউয়ী", meaning: "পরম শক্তিশালী" }, { id: 54, name: "ٱlْمَتِينُ", transliteration: "আল-মাতীন", meaning: "সুদৃঢ়" }, { id: 55, name: "ٱlْوَلِيُّ", transliteration: "আল-ওয়ালী", meaning: "অভিভাবক" }, { id: 56, name: "ٱlْحَمِيدُ", transliteration: "আল-হামীদ", meaning: "প্রশংসিত" }, { id: 57, name: "ٱlْمُحْصِيُ", transliteration: "আল-মুহসী", meaning: "হিসাবকারী" }, { id: 58, name: "ٱlْمُبْدِئُ", transliteration: "আল-মুবদী", meaning: "অস্তিত্বদানকারী" }, { id: 59, name: "ٱlْمُعِيدُ", transliteration: "আল-মুঈদ", meaning: "পুনরায় সৃষ্টিকারী" }, { id: 60, name: "ٱlْمُحْيِيُ", transliteration: "আল-মুহয়ী", meaning: "জীবনদানকারী" }, { id: 61, name: "ٱlْمُمِيتُ", transliteration: "আল-মুমীত", meaning: "মৃত্যুদানকারী" }, { id: 62, name: "ٱlْحَيُّ", transliteration: "আল-হাইয়্যু", meaning: "চিরঞ্জীব" }, { id: 63, name: "ٱlْقَيُّومُ", transliteration: "আল-কাইয়্যুম", meaning: "চিরস্থায়ী" }, { id: 64, name: "ٱlْوَاجِدُ", transliteration: "আল-ওয়াজিদ", meaning: "অসীম সম্পদশালী" }, { id: 65, name: "ٱlْمَاجِدُ", transliteration: "আল-মাজিদ", meaning: "মহিমান্বিত" }, { id: 66, name: "ٱlْوَاحِدُ", transliteration: "আল-ওয়াহিদ", meaning: "এক" }, { id: 67, name: "ٱlْأَحَدُ", transliteration: "আল-আহাদ", meaning: "এক ও অদ্বিতীয়" }, { id: 68, name: "ٱlْصَّمَدُ", transliteration: "আস-সামাদ", meaning: "অমুখাপেক্ষী" }, { id: 69, name: "ٱlْقَادِرُ", transliteration: "আল-কাদির", meaning: "সর্বশক্তিমান" }, { id: 70, name: "ٱlْمُقْتَدِرُ", transliteration: "আল-মুকতাদির", meaning: "সর্বাধিক প্রভাবশালী" }, { id: 71, name: "ٱlْمُقَدِّمُ", transliteration: "আল-মুকাদ্দিম", meaning: "অগ্রসরকারী" }, { id: 72, name: "ٱlْمُؤَخِّرُ", transliteration: "আল-মুআক্ষির", meaning: "অবকাশদানকারী" }, { id: 73, name: "ٱlْأَوَّلُ", transliteration: "আল-আউয়াল", meaning: "অনাদি" }, { id: 74, name: "ٱlْآخِرُ", transliteration: "আল-आखির", meaning: "অনন্ত" }, { id: 75, name: "ٱlْظَّاهِرُ", transliteration: "আয-যahir", meaning: "প্রকাশ্য" }, { id: 76, name: "ٱlْْبَاطِنُ", transliteration: "আল-বাতিন", meaning: "গুপ্ত" }, { id: 77, name: "ٱlْوَالِي", transliteration: "আল-ওয়ালী", meaning: "সর্বময় কর্তা" }, { id: 78, name: "ٱlْمُتَعَالِي", transliteration: "আল-মুতাআলী", meaning: "সৃষ্টির ঊর্ধ্বে" }, { id: 79, name: "ٱlْبَرُّ", transliteration: "আল-বার্", meaning: "কল্যাণময়" }, { id: 80, name: "ٱlْتَّوَّابُ", transliteration: "আত-তাওয়াব", meaning: "তওবা কবুলকারী" }, { id: 81, name: "ٱlْمُنْتَقِمُ", transliteration: "আল-মুনতাকিম", meaning: "প্রতিশোধ গ্রহণকারী" }, { id: 82, name: "ٱlْعَفُوُّ", transliteration: "আল-আফু", meaning: "ক্ষমাকারী" }, { id: 83, name: "ٱlْرَّؤُوفُ", transliteration: "আর-রউফ", meaning: "পরম স্নেহশীল" }, { id: 84, name: "مَالِكُ ٱlْمُلْكِ", transliteration: "মালিকুল মুলক", meaning: "সমগ্র রাজ্যের মালিক" }, { id: 85, name: "ذُو ٱlْجَلَالِ وَٱlْإِكْرَامِ", transliteration: "যুল-জালালি ওয়াল-ইকরাম", meaning: "মহিমান্বিত ও মহানুভব" }, { id: 86, name: "ٱlْمُقْسِطُ", transliteration: "আল-মুকসিত", meaning: "ন্যায়পরায়ণ" }, { id: 87, name: "ٱlْجَامِعُ", transliteration: "আল-জামি", meaning: "একত্রকারী" }, { id: 88, name: "ٱlْغَنِيُّ", transliteration: "আল-গনী", meaning: "ঐশ্বর্যশালী" }, { id: 89, name: "ٱlْمُغْنِيُّ", transliteration: "আল-মুগনী", meaning: "ঐশ্বর্যদানকারী" }, { id: 90, name: "ٱlْمَانِعُ", transliteration: "আল-মানি", meaning: "প্রতিরোধকারী" }, { id: 91, name: "ٱlْضَّارُّ", transliteration: "আদ-দার", meaning: "ক্ষতিসাধনকারী" }, { id: 92, name: "ٱlْنَّافِعُ", transliteration: "আন-নাফি", meaning: "কল্যাণকারী" }, { id: 93, name: "ٱlْنُّورُ", transliteration: "আন-নূর", meaning: "জ্যোতি" }, { id: 94, name: "ٱlْهَادِي", transliteration: "আল-হাদী", meaning: "পথপ্রদর্শক" }, { id: 95, name: "ٱlْبَدِيعُ", transliteration: "আল-বাদী", meaning: "অভিনব সৃষ্টিকারী" }, { id: 96, name: "ٱlْبَاقِي", transliteration: "আল-বাকী", meaning: "চিরস্থায়ী" }, { id: 97, name: "ٱlْوَارِثُ", transliteration: "আল-ওয়ারিস", meaning: "উত্তরাধিকারী" }, { id: 98, name: "ٱlْرَّشِيدُ", transliteration: "আর-রশীদ", meaning: "সঠিক পথপ্রদর্শক" }, { id: 99, name: "ٱlْصَّبُورُ", transliteration: "আস-সবুর", meaning: "অসীম ধৈর্যশীল" } ];
+    const zikrOptions = [ { text: 'সুবহানাল্লাহ' }, { text: 'আলহামদুলিল্লাহ' }, { text: 'আল্লাহু আকবার' }, { text: 'লা ইলাহা ইল্লাল্লাহ' }, { text: 'আস্তাগফিরুল্লাহ' } ];
+    
     // --- GLOBAL VARIABLES ---
     let currentDate = new Date();
     const bengaliNumbers = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
@@ -82,28 +133,12 @@
     function showPage(pageId, pushState = true) {
         document.querySelectorAll('.page-content').forEach(page => page.style.display = 'none');
         const targetPage = document.getElementById(pageId);
-        if (targetPage) {
-            targetPage.style.display = 'block';
-        } else {
-            document.getElementById('mainPage').style.display = 'block';
-            pageId = 'mainPage';
-        }
-        
-        if (pushState) {
-            const url = pageId === 'mainPage' ? window.location.pathname : `#${pageId}`;
-            history.pushState({ page: pageId }, '', url);
-        }
+        if (targetPage) { targetPage.style.display = 'block'; } else { document.getElementById('mainPage').style.display = 'block'; pageId = 'mainPage'; }
+        if (pushState) { const url = pageId === 'mainPage' ? window.location.pathname : `#${pageId}`; history.pushState({ page: pageId }, '', url); }
         window.scrollTo(0, 0);
     }
-    
-    function goBack() { 
-        history.back(); 
-    }
-    
-    window.onpopstate = function(event) { 
-        const page = (event.state && event.state.page) ? event.state.page : 'mainPage'; 
-        showPage(page, false); 
-    };
+    function goBack() { history.back(); }
+    window.onpopstate = function(event) { const page = (event.state && event.state.page) ? event.state.page : 'mainPage'; showPage(page, false); };
     
     // --- PAGE GENERATION FUNCTIONS ---
     function generatePageHeader(title) { return `<div class="page-header"><span onclick="goBack()" class="back-arrow">←</span><h2 class="page-title">${title}</h2><span class="w-8"></span></div>`; }
@@ -113,22 +148,120 @@
     function setupSearchPage() { const container = document.getElementById('searchPage'); container.innerHTML = `${generatePageHeader("সূরা সার্চ")}<div class="bg-white p-4 rounded-lg shadow-md mb-4"><p class="text-sm text-gray-600 mb-2">যেকোনো সূরার নম্বর (১ থেকে ১১৪) লিখে সার্চ করুন। এই ফিচারটির জন্য ইন্টারনেট সংযোগ প্রয়োজন।</p><div class="flex gap-2"><input type="number" id="surahSearchInput" class="w-full p-2 border border-gray-300 rounded-md" placeholder="যেমন: 1 (সূরা ফাতিহা)"><button onclick="searchSurah()" class="bg-green-600 text-white px-4 py-2 rounded-md">সার্চ</button></div></div><div id="searchResultContainer" class="bg-white p-4 rounded-lg shadow-md min-h-[200px]"><p class="text-center text-gray-400">এখানে সার্চের ফলাফল দেখানো হবে।</p></div>`; }
     
     // --- DYNAMIC CONTENT FUNCTIONS ---
+    async function fetchAndShowDailyVerse() {
+      const arabicEl = document.getElementById('dailyArabic'), translationEl = document.getElementById('dailyTranslation'), refEl = document.getElementById('dailyVerseRef');
+      try {
+        const randomAyahNumber = Math.floor(Math.random() * 6236) + 1;
+        const response = await fetch(`https://api.alquran.cloud/v1/ayah/${randomAyahNumber}/editions/quran-uthmani,bn.bengali`);
+        if (!response.ok) throw new Error('API থেকে বাণী আনা সম্ভব হয়নি।');
+        const data = await response.json();
+        if (data.code !== 200) throw new Error('API থেকে সঠিক তথ্য পাওয়া যায়নি।');
+        const [arabicData, bengaliData] = data.data;
+        arabicEl.innerText = arabicData.text;
+        translationEl.innerText = `অর্থ: ${bengaliData.text}`;
+        refEl.innerText = `(সূরা ${bengaliData.surah.name}, আয়াত: ${toBengali(bengaliData.numberInSurah)})`;
+      } catch (error) {
+        console.error("Error fetching daily verse:", error);
+        arabicEl.innerText = 'দুঃখিত, বাণী লোড করা যায়নি।';
+        translationEl.innerText = 'আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন।';
+        refEl.innerText = '';
+      }
+    }
+
+    async function onLocationSuccess(position) {
+      const locationStatus = document.getElementById('locationStatus'), prayerTimesTitle = document.getElementById('prayerTimesTitle'), { latitude, longitude } = position.coords;
+      locationStatus.innerText = "আপনার এলাকার নাম খোঁজা হচ্ছে...";
+      try {
+        const geoResponse = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=bn`);
+        const geoData = await geoResponse.json();
+        const locationParts = [ geoData.locality, geoData.city, geoData.principalSubdivision ].filter(Boolean);
+        const uniqueLocationParts = [...new Set(locationParts)];
+        const displayLocation = uniqueLocationParts.length > 0 ? uniqueLocationParts.join(', ') : 'আপনার এলাকা';
+        prayerTimesTitle.innerText = `নামাজের সময়সূচী (${displayLocation})`;
+        locationStatus.innerText = '';
+        await fetchAndDisplayTimes(`https://api.aladhan.com/v1/timings?latitude=${latitude}&longitude=${longitude}&method=2`);
+      } catch (error) { locationStatus.innerText = "এলাকার নাম পেতে সমস্যা হয়েছে।"; await fetchPrayerTimesByCity(); }
+    }
+    
+    async function onLocationError(error) {
+      const locationStatus = document.getElementById('locationStatus');
+      let msg = "একটি অজানা সমস্যা হয়েছে।";
+      if (error.code === error.PERMISSION_DENIED) msg = "আপনি লোকেশনের অনুমতি দেননি। দয়া করে ব্রাউজার সেটিংস চেক করুন।";
+      else if (error.code === error.POSITION_UNAVAILABLE) msg = "আপনার অবস্থান খুঁজে পাওয়া যাচ্ছে না। নেটওয়ার্ক চেক করুন।";
+      else if (error.code === error.TIMEOUT) msg = "লোকেশন পেতে বেশি সময় লাগছে। আবার চেষ্টা করুন।";
+      locationStatus.innerText = msg;
+      await fetchPrayerTimesByCity();
+    }
+
+    function changeLocationManually() { const city = prompt("আপনার শহরের নাম ইংরেজিতে লিখুন:", "Dhaka"); if (city && city.trim() !== "") { fetchPrayerTimesByCity(city.trim()); } }
+    async function fetchPrayerTimesByCity(city = 'Dhaka', country = 'Bangladesh') { document.getElementById('prayerTimesTitle').innerText = `নামাজের সময়সূচী (${city})`; document.getElementById('locationStatus').innerText = ''; await fetchAndDisplayTimes(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=2`); }
     async function searchSurah() { const input = document.getElementById('surahSearchInput'), resultContainer = document.getElementById('searchResultContainer'), surahNumber = parseInt(input.value); if (isNaN(surahNumber) || surahNumber < 1 || surahNumber > 114) { resultContainer.innerHTML = `<p class="text-center text-red-500">দয়া করে ১ থেকে ১১৪ এর মধ্যে একটি সঠিক সূরা নম্বর দিন।</p>`; return; } resultContainer.innerHTML = `<p class="text-center text-gray-500">লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</p>`; try { const response = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}/editions/quran-uthmani,bn.bengali,en.transliteration`); if (!response.ok) throw new Error('নেটওয়ার্ক সমস্যা। আবার চেষ্টা করুন।'); const data = await response.json(); if (data.code !== 200) throw new Error(data.data || 'সূরা খুঁজে পাওয়া যায়নি।'); const [arabicEdition, bengaliEdition, transliterationEdition] = data.data; let html = `<h2 class="text-2xl font-bold text-center mb-4">${arabicEdition.englishName} (${arabicEdition.name})</h2>`; for (let i = 0; i < arabicEdition.ayahs.length; i++) { const { numberInSurah, text: arabicText } = arabicEdition.ayahs[i], { text: bengaliText } = bengaliEdition.ayahs[i], { text: transliterationText } = transliterationEdition.ayahs[i]; html += `<div class="ayah-container"><div class="flex items-center gap-4"><span class="ayah-number">${toBengali(numberInSurah)}</span><p class="arabic-text w-full">${arabicText}</p></div><p class="transliteration-text">${transliterationText}</p><p class="text-gray-700">${bengaliText}</p></div>`; } resultContainer.innerHTML = html; } catch (error) { resultContainer.innerHTML = `<p class="text-center text-red-500">একটি সমস্যা হয়েছে: ${error.message}</p>`; } }
     async function fetchPrayerTimes() { const locationStatus = document.getElementById('locationStatus'); if (navigator.geolocation) { locationStatus.innerText = "আপনার অবস্থানের জন্য অনুমতি প্রয়োজন..."; navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }); } else { locationStatus.innerText = "আপনার ব্রাউজারে লোকেশন সার্ভিস সমর্থিত নয়।"; await fetchPrayerTimesByCity(); } }
-    async function onLocationSuccess(position) { const locationStatus = document.getElementById('locationStatus'), prayerTimesTitle = document.getElementById('prayerTimesTitle'), { latitude, longitude } = position.coords; locationStatus.innerText = "শহরের নাম খোঁজা হচ্ছে..."; try { const geoResponse = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`); const geoData = await geoResponse.json(); const city = geoData.city || geoData.locality || 'আপনার এলাকা'; prayerTimesTitle.innerText = `নামাজের সময়সূচী (${city})`; locationStatus.innerText = ''; await fetchAndDisplayTimes(`https://api.aladhan.com/v1/timings?latitude=${latitude}&longitude=${longitude}&method=2`); } catch (error) { locationStatus.innerText = "শহরের নাম পেতে সমস্যা হয়েছে।"; await fetchPrayerTimesByCity(); } }
-    async function onLocationError(error) { const locationStatus = document.getElementById('locationStatus'); switch(error.code) { case error.PERMISSION_DENIED: locationStatus.innerText = "আপনি লোকেশনের অনুমতি দেননি।"; break; case error.POSITION_UNAVAILABLE: locationStatus.innerText = "আপনার অবস্থান খুঁজে পাওয়া যাচ্ছে না।"; break; case error.TIMEOUT: locationStatus.innerText = "লোকেশন পেতে বেশি সময় লাগছে।"; break; default: locationStatus.innerText = "একটি অজানা সমস্যা হয়েছে।"; break; } await fetchPrayerTimesByCity(); }
-    async function fetchPrayerTimesByCity(city = 'Dhaka', country = 'Bangladesh') { document.getElementById('prayerTimesTitle').innerText = `নামাজের সময়সূচী (ঢাকা)`; document.getElementById('locationStatus').innerText = ''; await fetchAndDisplayTimes(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=2`); }
-    async function fetchAndDisplayTimes(url) { const container = document.getElementById('prayerTimesContainer'); try { const response = await fetch(url); if (!response.ok) throw new Error("API থেকে ডাটা আনা সম্ভব হয়নি।"); const data = await response.json(); if (data.code !== 200) throw new Error("API ডাটা সঠিক নয়।"); const times = data.data.timings, prayerTimes = { "ফজর": times.Fajr, "যোহর": times.Dhuhr, "আসর": times.Asr, "মাগরিব": times.Maghrib, "এশা": times.Isha, "সূর্যোদয়": times.Sunrise }, colors = ['green', 'yellow', 'orange', 'blue', 'indigo', 'red']; let i = 0, html = ''; for (const name in prayerTimes) { html += `<div class="p-2 bg-${colors[i++]}-50 rounded-md"><p class="font-semibold">${name}</p><p>${formatTime(prayerTimes[name])}</p></div>`; } container.innerHTML = html; } catch (error) { container.innerHTML = `<p class="text-red-500 text-center col-span-full">${error.message}</p>`; } }
+    async function fetchAndDisplayTimes(url) { const container = document.getElementById('prayerTimesContainer'); try { const response = await fetch(url); if (!response.ok) throw new Error("API থেকে ডাটা আনা সম্ভব হয়নি।"); const data = await response.json(); if (data.code !== 200) throw new Error("নামাজের সময়সূচী পাওয়া যায়নি। শহরটির নাম সঠিক কিনা দেখুন।"); const times = data.data.timings, prayerTimes = { "ফজর": times.Fajr, "যোহর": times.Dhuhr, "আসর": times.Asr, "মাগরিব": times.Maghrib, "এশা": times.Isha, "সূর্যোদয়": times.Sunrise }, colors = ['green', 'yellow', 'orange', 'blue', 'indigo', 'red']; let i = 0, html = ''; for (const name in prayerTimes) { html += `<div class="p-2 bg-${colors[i++]}-50 rounded-md"><p class="font-semibold">${name}</p><p>${formatTime(prayerTimes[name])}</p></div>`; } container.innerHTML = html; } catch (error) { container.innerHTML = `<p class="text-red-500 text-center col-span-full">${error.message}</p>`; } }
 
     // --- OTHER STATIC FUNCTIONS ---
-    function renderCalendar(date = new Date()) { const calendar = document.getElementById("calendar"), monthYear = document.getElementById("monthYear"), hijriDateEl = document.getElementById("hijriDate"); calendar.innerHTML = ""; const year = date.getFullYear(), month = date.getMonth(), today = new Date(); monthYear.innerText = date.toLocaleString('bn-BD', { month: 'long', year: 'numeric' }); hijriDateEl.innerText = gregorianToHijri(new Date()); const firstDayOfMonth = new Date(year, month, 1).getDay(), lastDateOfMonth = new Date(year, month + 1, 0).getDate(); calendar.innerHTML += weekDaysBengali.map(day => `<div class="font-bold text-gray-600 h-10 flex items-center justify-center">${day}</div>`).join(''); for (let i = 0; i < firstDayOfMonth; i++) calendar.innerHTML += `<div></div>`; for (let d = 1; d <= lastDateOfMonth; d++) { const isToday = today.getDate() === d && today.getMonth() === month && today.getFullYear() === year; calendar.innerHTML += `<div class="h-10 w-10 flex items-center justify-center text-xl font-bold text-gray-800 rounded-full mx-auto ${isToday ? 'active-today' : ''}">${toBengali(d)}</div>`; } }
+    // ===== ক্যালেন্ডার ফাংশন আপডেট করা হয়েছে (renderCalendar) =====
+    function renderCalendar(date = new Date()) {
+      const calendar = document.getElementById("calendar"), monthYear = document.getElementById("monthYear"), hijriDateEl = document.getElementById("hijriDate");
+      calendar.innerHTML = "";
+      const year = date.getFullYear(), month = date.getMonth(), today = new Date();
+      monthYear.innerText = date.toLocaleString('bn-BD', { month: 'long', year: 'numeric' });
+      hijriDateEl.innerText = getFullHijriDate(new Date()); // সম্পূর্ণ হিজরি তারিখ উপরে দেখানো
+      
+      const firstDayOfMonth = new Date(year, month, 1).getDay();
+      const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+      
+      calendar.innerHTML += weekDaysBengali.map(day => `<div class="font-bold text-gray-600 h-10 flex items-center justify-center">${day}</div>`).join('');
+      for (let i = 0; i < firstDayOfMonth; i++) calendar.innerHTML += `<div></div>`;
+      
+      for (let d = 1; d <= lastDateOfMonth; d++) {
+        const isToday = today.getDate() === d && today.getMonth() === month && today.getFullYear() === year;
+        const currentCellDate = new Date(year, month, d);
+        const hijriDay = getHijriDay(currentCellDate); // প্রতিটি দিনের জন্য হিজরি দিন পাওয়া
+
+        calendar.innerHTML += `
+          <div class="h-14 flex items-center justify-center">
+            <div class="h-12 w-12 flex flex-col items-center justify-center rounded-full mx-auto ${isToday ? 'active-today' : ''}">
+              <span class="text-xl font-bold text-gray-800">${toBengali(d)}</span>
+              <span class="text-xs text-green-700">${hijriDay}</span>
+            </div>
+          </div>`;
+      }
+    }
+
     function prevMonth() { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(currentDate); }
     function nextMonth() { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(currentDate); }
     function goToToday() { currentDate = new Date(); renderCalendar(currentDate); }
     function changeZikr() { currentZikrIndex = document.getElementById('zikrSelect').value; document.getElementById('zikrTextDisplay').innerText = zikrOptions[currentZikrIndex].text; resetCounter(); }
     function increment() { counter++; document.getElementById("counterDisplay").innerText = toBengali(counter); }
     function resetCounter() { counter = 0; document.getElementById("counterDisplay").innerText = toBengali(counter); }
-    function gregorianToHijri(date) { let d = date.getDate(), m = date.getMonth() + 1, y = date.getFullYear(); if (m < 3) { y -= 1; m += 12; } let a = Math.floor(y / 100), b = 2 - a + Math.floor(a / 4), jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + b - 1524; b = 0; if (jd > 2299160) { a = Math.floor((jd - 1867216.25) / 36524.25); b = 1 + a - Math.floor(a / 4); } let bb = jd + b + 1524, cc = Math.floor((bb - 122.1) / 365.25), dd = Math.floor(365.25 * cc), ee = Math.floor((bb - dd) / 30.6001); d = (bb - dd) - Math.floor(30.6001 * ee); m = ee - 1; if (ee > 13) { cc += 1; m = ee - 13; } y = cc - 4716; let wd = jd - 1948440 + 10632, n = Math.floor((wd - 1) / 10631); wd = wd - 10631 * n + 354; let j = (Math.floor((10985 - wd) / 5316)) * (Math.floor((50 * wd) / 17719)) + (Math.floor(wd / 5670)) * (Math.floor((43 * wd) / 15238)); wd = wd - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50)) - (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29; m = Math.floor((24 * wd) / 709); d = wd - Math.floor((709 * m) / 24); y = 30 * n + j - 30; const hijriMonths = ["মুহররম", "সফর", "রবিউল আউয়াল", "রবিউস সানি", "জমাদিউল আউয়াল", "জমাদিউস সানি", "রজব", "শাবান", "রমজান", "শাওয়াল", "জিলকদ", "জিলহজ"]; return `${toBengali(d)} ${hijriMonths[m - 1]}, ${toBengali(y)} হিজরি`; }
+    
+    // ===== হিজরি তারিখের জন্য নতুন ফাংশন =====
+    function calculateHijri(date) {
+      let d = date.getDate(), m = date.getMonth() + 1, y = date.getFullYear();
+      if (m < 3) { y -= 1; m += 12; }
+      let a = Math.floor(y / 100), b = 2 - a + Math.floor(a / 4);
+      let jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + b - 1524.5;
+      let wd = jd - 1948440 + 10632, n = Math.floor((wd - 1) / 10631);
+      wd = wd - 10631 * n + 354;
+      let j = (Math.floor((10985 - wd) / 5316)) * (Math.floor((50 * wd) / 17719)) + (Math.floor(wd / 5670)) * (Math.floor((43 * wd) / 15238));
+      wd = wd - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50)) - (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29;
+      let hm = Math.floor((24 * wd) / 709);
+      let hd = wd - Math.floor((709 * hm) / 24);
+      let hy = 30 * n + j - 30;
+      return { day: hd, month: hm, year: hy };
+    }
+    
+    function getFullHijriDate(date) {
+      const hijri = calculateHijri(date);
+      const hijriMonths = ["মুহররম", "সফর", "রবিউল আউয়াল", "রবিউস সানি", "জমাদিউল আউয়াল", "জমাদিউস সানি", "রজব", "শাবান", "রমজান", "শাওয়াল", "জিলকদ", "জিলহজ"];
+      return `${toBengali(hijri.day)} ${hijriMonths[hijri.month - 1]}, ${toBengali(hijri.year)} হিজরি`;
+    }
+
+    function getHijriDay(date) {
+      const hijri = calculateHijri(date);
+      return toBengali(hijri.day);
+    }
 
     // --- INITIAL APP LOAD ---
     function initializeApp() {
@@ -140,18 +273,14 @@
         setupZikrPage();
         setupSearchPage();
         
-        const initialPage = window.location.hash.replace('#', '') || 'mainPage';
-        if (document.getElementById(initialPage)) {
-            showPage(initialPage, false);
-        } else {
-            showPage('mainPage', false);
-        }
-        if (!window.location.hash) {
-            history.replaceState({ page: 'mainPage' }, '', window.location.pathname);
-        }
-        
+        fetchAndShowDailyVerse();
         fetchPrayerTimes();
         renderCalendar();
+        
+        const initialPage = window.location.hash.replace('#', '') || 'mainPage';
+        if (document.getElementById(initialPage)) { showPage(initialPage, false); } 
+        else { showPage('mainPage', false); }
+        if (!window.location.hash) { history.replaceState({ page: 'mainPage' }, '', window.location.pathname); }
     }
 
     initializeApp();
